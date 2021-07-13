@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jul 13 14:07:45 2021
+
+@author: Priyanka Patel
+"""
+
 # Based on Tom Anastasio's habituationGWR.m
 # this script sets up a very simple simulation of habituation
 # of the Aplysia gill withdrawal reflex
@@ -12,17 +19,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 ###############################
-# Define input stimulation
+# Define input stimulation: sensory input
 ###############################
 # TODO: Set a variable called stv to 4, this will define 
 #        the weight of the connection from input to output
-# stv = 
+stv = 4
 
 # TODO: set up an input pulse called pls
-# pls = 
+pls = [0, 0, 1, 0, 0]
 
 # TODO: then create a list of 6 pulses, called x, to use for input
-# x = 
+x = pls*6 
 
 v = stv # Set connection weight to start weight value
 
@@ -41,8 +48,11 @@ y = np.zeros((1,nTs)) # set up (define) a vector for the output time series
 #     then indent 4 spaces and write the equation that
 #     describes how each input value in the vector x is 
 #     transformed to the output value in the vector y
-
-
+t=0
+for t in range(nTs):
+    y[0,t] = v *x[t]
+    if x[t]>0:
+        v *= 0.7
 
 ###############################
 # Plot the results
